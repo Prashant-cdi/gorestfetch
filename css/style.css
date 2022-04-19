@@ -1,0 +1,19 @@
+#demo {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.element{
+    width: 30%;
+    
+    line-height: 2;
+    margin: 20px;
+}
+
+td{
+    border: 1px solid grey;
+    padding: 10px;
+}
+

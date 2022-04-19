@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <button onclick="loaddoc()">Get Users</button>
+    <div id="demo">
+    </div>
+    <script>
+
+        function loaddoc(){
+            const xhttp  = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200 ){
+                    myfunction(this);
+                }
+            }
+
+            
+            xhttp.open("GET","https://gorest.co.in/public/v2/posts",true);
+            xhttp.send();
+            
+            function myfunction(xml){
+                var myJSON = xml.responseText;
+                var myObj = JSON.parse(myJSON);
+                console.log(myObj);
+                var text="";
+                myObj.forEach(function(value,index) {
+
+                   text = text + '<div class="element">  <table>' +'<tr><td>ID</td><td>'+value.id+'</td></tr>'+
+                            '<tr><td>User Id</td><td>'+value.userid+'</td></tr>'+
+                            '<tr><td>Title</td><td>'+value.title+'</td></tr>'+
+                            '<tr><td>Body</td><td>'+value.body+'</td></tr></table></div>';
+                            
+                    
+                });
+                document.getElementById("demo").innerHTML = text;
+            }
+        }
+    </script>
+</body>
+</html>
